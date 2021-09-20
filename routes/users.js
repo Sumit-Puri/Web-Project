@@ -4,4 +4,6 @@ const router = express.Router();
 const user_Controller = require('../controllers/users_controller');
 
 router.get('/profile',user_Controller.profile);
+router.get('/signup',user_Controller.signUp);
+router.get('/signin',user_Controller.signIn);
 module.exports= router;

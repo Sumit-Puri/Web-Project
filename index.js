@@ -8,8 +8,13 @@ const db=require('./config/mongoose');
 app.use(express.static('./assets'));
 app.use(expressLayouts);
 
+
+//to extract styles and scripts in layout from subpages
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 //use express router ,this will connect this file to router
 app.use('/',require('./routes/index'));
+
 
 
 //setting up view engine and providing view file

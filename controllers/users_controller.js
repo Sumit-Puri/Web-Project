@@ -6,11 +6,19 @@ module.exports.profile = function(req,res){
 };
 
 module.exports.signUp=function(req,res){
+    //if already signed in
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_signup',{
         title:'Social|Signup'
     });
 };
 module.exports.signIn=function(req,res){
+    //if already signed in
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+    }
     return res.render('user_signin',{
         title:'Social|Signin'
     })
@@ -46,5 +54,11 @@ module.exports.create = function(req,res){
 }
 //getting signin form data
 module.exports.createSession = function(req,res){
+    return res.redirect('/');
+}
 
+//signout
+module.exports.destroySession = function(req,res){
+    req.logout();
+    return res.redirect('/');
 }

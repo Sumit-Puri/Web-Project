@@ -1,5 +1,17 @@
+const Post=require('../models/post');
+
 module.exports.home= function(req,res){
-    return res.render('home',{
-        title: "MY HOME"
+    // Post.find({},function(err,posts){
+    //     return res.render('home',{
+    //         title: "MY HOME",
+    //         posts: posts
+    //     });
+    // });
+    //populate user of each post
+    Post.find({}).populate('user').exec(function(err,posts){
+        return res.render('home',{
+            title: "MY HOME",
+            posts: posts
+        });
     });
 }

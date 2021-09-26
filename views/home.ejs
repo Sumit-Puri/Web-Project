@@ -1,5 +1,5 @@
 
-<h1> Site/<%= title %></h1>
+<h1> <%= title %></h1>
 
 <section id="feed-post">
         <h4>Posts</h4>
@@ -7,4 +7,19 @@
                 <textarea name="content" placeholder="type here" cols="30" rows="3"></textarea>
                 <input type="submit" value="Post">
         </form>
+        <div id="posts-list-container">
+                <ul>
+                        <% for(post of posts){%>
+                        <li>
+                               <p>
+                                <%= post.content %>
+                                <small>
+                                        <%= post.user.name %>
+                                </small>
+                               </p> 
+                                
+                        </li>
+                        <%}%>
+                </ul>
+        </div>
 </section>

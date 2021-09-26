@@ -10,5 +10,6 @@ router.get('/',Controller.home);
 //this will connect all /user url to user routes
 router.use('/users',require('./users'));
 router.use('/posts',require('./post'));
+router.use('/comments',require('./comments'));
 
 module.exports=router;

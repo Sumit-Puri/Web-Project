@@ -1,8 +1,8 @@
-<li>
+<li id="comment-<%= comment._id%>">
     <p>
         <% if(locals.user && locals.user.id==comment.user.id)  { //user signed in or not%>
                 <small>
-                        <a href="/comments/destroy/<%= comment.id %>">del</a>
+                        <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">del</a>
                 </small>
                 <% } %>
         <%= comment.content %>

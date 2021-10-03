@@ -45,7 +45,7 @@
          
          ${post.content}
          <small>
-                 ${post.user.name}
+                 ${user}
          </small>
         </p> 
         <div class="post-comments">

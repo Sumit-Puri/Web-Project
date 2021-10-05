@@ -12,7 +12,11 @@
                     <a href="/">Home</a>
                 </li>
                 <li>
+                    <% if (locals.user){ %>
                     <a href="/users/profile/<%= user.id %>">Profile</a>
+                    <%}else{%>
+                        <a href="/users/signin">SignIn</a>
+                        <%}%>
                 </li>
             </ul>
         </nav>

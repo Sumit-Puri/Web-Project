@@ -4,12 +4,18 @@
 }
 
 #home-container #feed-post {
-  width: 70%;
+  width: 50%;
   padding: 10px;
 }
 
 #home-container #user-friends {
-  width: 30%;
+  width: 25%;
+  padding: 10px;
+  border-left: 1px solid lightgray;
+}
+
+#home-container #users {
+  width: 25%;
   padding: 10px;
   border-left: 1px solid lightgray;
 }

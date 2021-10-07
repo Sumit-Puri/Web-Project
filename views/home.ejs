@@ -19,6 +19,15 @@
 </section>
 <section id="user-friends">
         <h4>Friends</h4>
+        
+        <% for(u of friends){%>
+                <ul id="friends-list">
+                        <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+                </ul>
+                <%}%>
+</section>
+<section id="users">
+        <h4>Users</h4>
         <% for(u of all_users){%>
                 <p>
                         <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
@@ -35,4 +44,10 @@
         let self = this;
         let toggleLike = new ToggleLike(self);
     });
+</script>
+<script src="js/toggle_friends.js">
+        $('.toggle-friend-button').each(function(){
+                let self = this;
+                let toggleFriend = new toggleFriend(self);
+        });
 </script>

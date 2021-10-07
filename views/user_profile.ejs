@@ -13,6 +13,10 @@
                 <%}else{%>
                         <p><%= profile_user.name %></p>
                         <p><%= profile_user.email%></p>
-                        <%}%>
+                        <% if(!fstatus){ %>
+                        <a class="toggle-friend-button" href="/friends/toggle/?id1=<%=profile_user._id%>&id2=<%=user._id%>">Add Friend</a>
+                        <%}else{%>
+                                <a class="toggle-friend-button" href="/friends/toggle/?id1=<%=profile_user._id%>&id2=<%=user._id%>">Remove Friend</a>    
+                        <%}}%>
 
         

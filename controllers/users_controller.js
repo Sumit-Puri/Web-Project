@@ -3,10 +3,21 @@ const fs = require('fs');
 const path = require('path');
 module.exports.profile = function(req,res){
     User.findById(req.params.id,function(err,user){
+        if(user){
+        let x=false;
+        for(u of user.friendships)
+           {
+               if(u==req.user.id)
+               {
+                   x=true;
+                   break;
+               }
+           }
         return res.render('user_profile',{
             title: "user-profile",
-            profile_user: user
-        });
+            profile_user: user,
+            fstatus:x
+        });}
     });
     
 };

@@ -15,6 +15,12 @@ const flash =require('connect-flash');
 const customMware= require('./config/middleware');
 const passprtGoogle = require('./config/passport-google-oauth2-strategy');
 
+
+const chatServer = require('http').Server(app);
+const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
+chatServer.listen(5000);
+console.log('chatserver is listening on port 5000');
+
 app.use(sassMiddleware({
     src:'./assets/scss',//where to take sass files
     dest: './assets/css',//where to give css compiled files

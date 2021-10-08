@@ -25,13 +25,15 @@ module.exports.home= async function(req,res){
 
 
         let users=await User.find({});
+        let array =[];
+        if(req.user){
         let us = await User.findById(req.user._id);
         let friendarray = us.friendships;
-        let array =[];
+        
         for(u of friendarray){
             let f = await User.findById(u);
             array.push(f);
-        }
+        }}
         return res.render('home',{
             title: "MY HOME",
             posts: posts,

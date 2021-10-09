@@ -1,4 +1,6 @@
 const express=require('express');
+const env = require('./config/environments');
+const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const app=express();
 const port=8000;
@@ -14,28 +16,32 @@ const sassMiddleware = require('node-sass-middleware');
 const flash =require('connect-flash');
 const customMware= require('./config/middleware');
 const passprtGoogle = require('./config/passport-google-oauth2-strategy');
-
+const path = require('path');
 
 const chatServer = require('http').Server(app);
 const chatSockets = require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chatserver is listening on port 5000');
+if(env.name=='development'){
+    app.use(sassMiddleware({
+        src: path.join(__dirname, env.asset_path,'scss'),//where to take sass files
+        dest: path.join(__dirname,env.asset_path,'css'),//where to give css compiled files
+        debug:true,
+        outputStyle:'expanded',//how css file should look
+        prefix:'/css'
+    }))
+}
 
-app.use(sassMiddleware({
-    src:'./assets/scss',//where to take sass files
-    dest: './assets/css',//where to give css compiled files
-    debug:true,
-    outputStyle:'expanded',//how css file should look
-    prefix:'/css'
-}))
 app.use(express.urlencoded());
 
 app.use(cookieParser());
 
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 app.use(expressLayouts);
 app.use('/uploads',express.static(__dirname + '/uploads'));//make the uploads path available to browser
 
+
+app.use(logger(env.morgan.mode,env.morgan.options));
 
 //to extract styles and scripts in layout from subpages
 app.set('layout extractStyles',true);
@@ -53,7 +59,7 @@ app.set('views','./views');
 app.use(session({
     //name of cookie
     name:'major1',
-    secret: 'something',//key to encrypt data
+    secret: env.session_cookie_key,//key to encrypt data
     saveUninitialized:false,//when user not logged do i want to save uninitialized data
     resave:false,
     cookie:{

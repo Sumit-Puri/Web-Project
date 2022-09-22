@@ -1,4 +1,5 @@
 const express=require('express');
+require('dotenv').config();
 const env = require('./config/environments');
 const logger = require('morgan');
 

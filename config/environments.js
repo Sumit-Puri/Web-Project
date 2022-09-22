@@ -27,10 +27,10 @@ const development = {
             pass: 'Sumit@196'
         }
     },
-    google_client_id : "620226790737-iadsgck3pt7klop9o2info78p4bikoj5.apps.googleusercontent.com",
-    google_client_secret : "tB77CJY5Wn337ILJUelAbpf8",
-    google_callback_url : "http://socialpage.com/users/auth/google/callback",
-    jwt_secret:'Social',
+    google_client_id: process.env.major1_GOOGLE_CLIENT_ID,
+    google_client_secret: process.env.major1_GOOGLE_CLIENT_SECRET,
+    google_call_back_url: process.env.major1_GOOGLE_CALLBACK_RURL,
+    jwt_secret: process.env.major1_JWT_SECRET,
     morgan : {
         mode: 'dev',
         options: {stream:accessLogStream}
